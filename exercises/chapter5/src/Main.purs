@@ -94,7 +94,7 @@ allTrue = foldl (\acc x -> acc && x) true
 {-
 (Medium - No Test) Characterize those arrays xs for which the function foldl (==) false xs returns true.
 In other words, complete the sentence: "The function returns true when xs contains ..."
--> The function returns true when xs contains all `false` values.
+-> The function returns true when xs contains an odd number of `false` values.
 -} 
 
 fibTailRec ∷ Int → Int
