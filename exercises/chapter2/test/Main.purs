@@ -2,8 +2,10 @@ module Test.Main where
 
 import Prelude
 import Test.MySolutions
+
 import Effect (Effect)
 import Euler (answer)
+import Solution (circleArea, diagonal, leftoverCents)
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -16,7 +18,6 @@ main = do
         Assert.equal 23 (answer 10)
       test "below 1000" do
         Assert.equal 233168 (answer 1000)
-    {-  Move this block comment starting point to enable more tests
     suite "diagonal" do
       test "3 4 5" do
         Assert.equal 5.0 (diagonal 3.0 4.0)
@@ -35,4 +36,5 @@ main = do
       test "-789" do
         Assert.equal (-89) (leftoverCents (-789))
 
+    {-  Move this block comment starting point to enable more tests
 -}

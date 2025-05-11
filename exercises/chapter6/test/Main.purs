@@ -12,12 +12,12 @@ import Partial.Unsafe (unsafePartial)
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
+import Main
 
 main :: Effect Unit
 main =
   runTest do
     runChapterExamples
-    {-  Move this block comment starting point to enable more tests
     suite "Show Me!" do
       test "Show Point" do
         Assert.equal "(1.0, 2.0)"
@@ -34,6 +34,7 @@ main =
           Assert.equal "1.0-2.0i"
             $ show
             $ cpx 1.0 (-2.0)
+    {-  Move this block comment starting point to enable more tests
       suite "Eq Complex" do
         test "equal" do
           Assert.equal (cpx 1.0 2.0)

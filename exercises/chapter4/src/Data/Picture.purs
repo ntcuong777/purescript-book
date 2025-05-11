@@ -19,6 +19,7 @@ data Shape
   | Rectangle Point Number Number
   | Line Point Point
   | Text Point String
+  | Clipped Picture Point Number Number
 
 showShape :: Shape -> String
 showShape (Circle c r) =
@@ -29,6 +30,13 @@ showShape (Line start end) =
   "Line [start: " <> showPoint start <> ", end: " <> showPoint end <> "]"
 showShape (Text loc text) =
   "Text [location: " <> showPoint loc <> ", text: " <> show text <> "]"
+showShape (Clipped pic c w h) =
+  "Clipped [picture: " <> concatPic <> ", center: " <> showPoint c <> ", width: " <> show w <> ", height: " <> show h <> "]"
+  where
+    concPic :: String -> String -> String
+    concPic acc s = acc <> ", [ " <> s <> "]"
+    concatPic :: String
+    concatPic = foldl concPic "" (map showShape pic)
 
 exampleLine :: Shape
 exampleLine = Line p1 p2
@@ -52,6 +60,7 @@ getCenter (Circle c r) = c
 getCenter (Rectangle c w h) = c
 getCenter (Line s e) = (s + e) * {x: 0.5, y: 0.5}
 getCenter (Text loc text) = loc
+getCenter (Clipped _ c _ _) = c
 
 type Picture = Array Shape
 
@@ -98,6 +107,18 @@ shapeBounds (Text { x, y } _) =
   , bottom: y
   , right:  x
   }
+shapeBounds (Clipped pic { x, y } w h) =
+  { top: top
+  , left: left
+  , bottom: bottom
+  , right: right
+  }
+  where
+    picBounds = bounds pic
+    top = max picBounds.top (y - h / 2.0)
+    left = max picBounds.left (x - w / 2.0)
+    bottom = min picBounds.bottom (y + h / 2.0)
+    right = min picBounds.right (x + w / 2.0)
 
 union :: Bounds -> Bounds -> Bounds
 union b1 b2 =
