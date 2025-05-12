@@ -5,6 +5,8 @@ import Prelude
 import Data.Array (elem)
 import Data.Int64 (Int64, fromInt)
 
+-- Though, might be not too hardcore. Just tricky when having to think in terms of states
+-- The feeling is like `dynamic programming` everywhere (but not quite)
 totalNQueens :: Int -> Int64
 totalNQueens n = tryRow (n - 1) [] [] []
   where
