@@ -34,7 +34,6 @@ main =
           Assert.equal "1.0-2.0i"
             $ show
             $ cpx 1.0 (-2.0)
-    {-  Move this block comment starting point to enable more tests
       suite "Eq Complex" do
         test "equal" do
           Assert.equal (cpx 1.0 2.0)
@@ -161,6 +160,7 @@ main =
       test "dedupShapesFast" do
         Assert.equal noDups
           $ dedupShapesFast withDups
+    {-  Move this block comment starting point to enable more tests
     suite "Multi Parameter Type Classes " do
       test "unsafeMaximum" do
         Assert.equal 42
